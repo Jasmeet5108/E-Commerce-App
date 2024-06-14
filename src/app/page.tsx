@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -55,10 +56,10 @@ export default function Home() {
 
   return (
     <div className="flex justify-center items-center h-[650px]">
-      <div className="w-full max-w-xs sm:max-w-lg">
-        <form onSubmit={postData} className="bg-white shadow-xl rounded px-5 pt-6 pb-8 mb-4">
+      <div className="w-full max-w-[352px] sm:max-w-lg">
+        <form onSubmit={postData} className="bg-white shadow-xl rounded-xl px-5 pt-6 pb-8 mb-4">
           <div>
-            <h2 className='font-semibold text-lg sm:text-xl text-center'>Create your account</h2>
+            <h2 className='font-semibold text-xl text-center'>Create your account</h2>
             <p className="mt-1 text-sm sm:text-base text-gray-500 text-center">Welcome! Please fill in the details</p>
           </div>
           <div className="my-6">
@@ -116,19 +117,19 @@ export default function Home() {
             />
           </div>
           <div className="flex flex-col items-center justify-between">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              {loading ? "loading..." : "Sign up"}
-            </button>
+            {loading ? <Image src="/loading.jpg" width={70} height={70} alt="loader" /> :
+              <button
+                className={`bg-blue-500 flex justify-center w-32 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
+                type="submit"> Sign up
+              </button>
+            }
 
-            <div className="mt-3 text-sky-600 text-sm underline underline-offset-4">
+            <div className="mt-4 text-sky-600 text-sm underline underline-offset-4">
               <Link href="/login">Already have an account?</Link>
             </div>
 
             {/* Response from server */}
-            {message && <div className='mt-4 border border-red-600 py-1 px-2 bg-red-200 rounded-md'>
+            {message && <div className='mt-4 border border-red-600 py-1 px-2 bg-red-100 rounded-md'>
               <p className="text-rose-500">{message}</p>
             </div>}
 

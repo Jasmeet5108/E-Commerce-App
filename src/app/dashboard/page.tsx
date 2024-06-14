@@ -1,50 +1,33 @@
 "use client"
-import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useFetch } from '../../../context/FetchContext'
+import Image from 'next/image'
+import Navbar from '@/components/Navbar'
 
 const page = () => {
 
-  const router = useRouter()
-  const [name, setName] = useState(null)
-
-  const logout = async () => {
-    try {
-      const response = await fetch("/api/logout", {
-        method: "GET",
-      })
-      const res = await response.json()
-      if (res.success) {
-        router.push("/login")
-      }
-      else{
-        console.log("Error logging out");
-        
-      }
-    } catch (error: any) {
-      console.log(error.message);
-    }
-  }
-
-  const getUserDetails = async () => {
-    const res = await fetch("/api/user", {
-      method: "GET"
-    })
-    const data = await res.json()
-    console.log(data);
-    setName(data.data.username)
-  }
+  const { data, fetchData } = useFetch()
 
   useEffect(() => {
-    getUserDetails()
+    fetchData()
   }, [])
 
   return (
-    <div>
-      <p>Welcome, {name}</p>
-      <hr />
-      <button onClick={logout}>Logout</button>
-      <br />
-    </div>
+    <>
+      <Navbar />
+
+      <div className='flex flex-wrap items-center gap-2 p-4 mt-4 max-w-screen-2xl mx-auto'>
+        {data && data.map((item, index) => (
+          <div key={index} className='flex flex-col h-[450px] w-[350px] p-2 gap-5 items-center border border-black rounded-xl'>
+            <Image className='w-full h-80 border rounded-xl' width={100} height={100} src={item.image} alt="Image" />
+            <p className='text-center text-sm font-semibold line-clamp-3'>{item.title}</p>
+            <p className='font-semibold'>{item.price}</p>
+          </div>
+        ))}
+      </div>
+
+
+    </>
   )
 }
 

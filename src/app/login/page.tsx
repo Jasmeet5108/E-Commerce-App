@@ -30,9 +30,7 @@ const Form = () => {
                 body: JSON.stringify(data)
             });
             const res = await response.json()
-            console.log(res);
             if (!res.success) {
-                console.log(res.msg);
                 setMessage(res.msg)
                 setTimeout(() => {
                     setMessage(null);
@@ -49,15 +47,15 @@ const Form = () => {
 
     return (
         <div className="flex justify-center items-center h-[650px]">
-            <div className="w-full max-w-xs">
+            <div className="w-full max-w-xs sm:max-w-lg">
                 <form onSubmit={postData} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div>
-                        <h2 className='mb-1 font-semibold text-lg text-center'>Login</h2>
-                        <p className="mt-1 text-sm text-gray-500 text-center">Welcome back!</p>
+                        <h2 className='mb-1 font-semibold text-lg sm:text-xl text-center'>Login</h2>
+                        <p className="mt-1 text-sm sm:text-base text-gray-500 text-center">Welcome back!</p>
                     </div>
                     <div className="my-6">
                         <label
-                            className="block text-gray-700 text-sm font-bold my-2"
+                            className="block text-gray-700 text-sm sm:text-base font-bold my-2"
                             htmlFor="email"
                         >
                             Email
@@ -75,7 +73,7 @@ const Form = () => {
                     </div>
                     <div className="mb-6">
                         <label
-                            className="block text-gray-700 text-sm font-bold my-2"
+                            className="block text-gray-700 text-sm sm:text-base font-bold my-2"
                             htmlFor="password"
                         >
                             Password

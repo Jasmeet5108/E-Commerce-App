@@ -22,9 +22,7 @@ export default function Home() {
   }
 
   const postData = async (e: React.FormEvent) => {
-
     e.preventDefault();
-
     try {
       const response = await fetch("/api/signup", {
         method: "POST",
@@ -47,7 +45,7 @@ export default function Home() {
       }
 
       else if (res.success) {
-        router.push("/login")
+        router.push("/dashboard")
       }
 
     } catch (err: any) {
@@ -58,18 +56,18 @@ export default function Home() {
 
   return (
     <div className="flex justify-center items-center h-[650px]">
-      <div className="w-full max-w-xs">
+      <div className="w-full max-w-xs sm:max-w-lg">
         <form onSubmit={postData} className="bg-white shadow-xl rounded px-5 pt-6 pb-8 mb-4">
           <div>
-            <h2 className='font-semibold text-lg text-center'>Create your account</h2>
-            <p className="mt-1 text-sm text-gray-500 text-center">Welcome! Please fill in the details</p>
+            <h2 className='font-semibold text-lg sm:text-xl text-center'>Create your account</h2>
+            <p className="mt-1 text-sm sm:text-base text-gray-500 text-center">Welcome! Please fill in the details</p>
           </div>
           <div className="my-6">
             <label
-              className="block text-gray-700 text-sm font-bold my-2"
+              className="block text-gray-700 text-sm sm:text-base font-bold my-2"
               htmlFor="username"
             >
-              username
+              Username
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -84,7 +82,7 @@ export default function Home() {
           </div>
           <div className="mb-4">
             <label
-              className="block text-gray-700 text-sm font-bold my-2"
+              className="block text-gray-700 text-sm sm:text-base font-bold my-2"
               htmlFor="email"
             >
               Email
@@ -102,7 +100,7 @@ export default function Home() {
           </div>
           <div className="mb-6">
             <label
-              className="block text-gray-700 text-sm font-bold my-2"
+              className="block text-gray-700 text-sm sm:text-base font-bold my-2"
               htmlFor="password"
             >
               Password

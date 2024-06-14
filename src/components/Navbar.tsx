@@ -54,7 +54,7 @@ const Navbar = () => {
             <nav className='flex justify-between items-center max-w-screen-2xl px-3 mx-auto h-16'>
                 <h2 className='text-lg sm:text-[27px] text-white'>EasyMart</h2>
                 <div className='flex justify-end w-52'>
-                    <div className="relative lg:hidden inline-block text-center">
+                    <div className="relative inline-block text-center">
                         <button
                             onClick={toggleDropdown}
                             type="button"

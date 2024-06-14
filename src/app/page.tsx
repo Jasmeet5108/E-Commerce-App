@@ -7,6 +7,7 @@ import { useState } from "react"
 export default function Home() {
 
   const router = useRouter()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [data, setData] = useState({
     username: "",
@@ -23,6 +24,7 @@ export default function Home() {
 
   const postData = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await fetch("/api/signup", {
         method: "POST",
@@ -31,17 +33,13 @@ export default function Home() {
         },
         body: JSON.stringify(data)
       });
-
       const res = await response.json()
 
       if (!res.success) {
-
         setMessage(res.msg)
-
         setTimeout(() => {
           setMessage(null);
         }, 2000);
-
       }
 
       else if (res.success) {
@@ -51,6 +49,7 @@ export default function Home() {
     } catch (err: any) {
       console.log(err)
     }
+    setLoading(false)
   }
 
 
@@ -121,10 +120,10 @@ export default function Home() {
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
-              Sign In
+              {loading ? "loading..." : "Sign up"}
             </button>
 
-            <div className="mt-3 text-sky-600 underline underline-offset-4">
+            <div className="mt-3 text-sky-600 text-sm underline underline-offset-4">
               <Link href="/login">Already have an account?</Link>
             </div>
 

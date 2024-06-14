@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 const Form = () => {
 
     const router = useRouter()
+    const [loading, setLoading] = useState<boolean>(false)
 
     const [data, setData] = useState({
         email: "",
@@ -21,6 +22,7 @@ const Form = () => {
 
     const postData = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true)
         try {
             const response = await fetch("/api/login", {
                 method: "POST",
@@ -29,6 +31,7 @@ const Form = () => {
                 },
                 body: JSON.stringify(data)
             });
+
             const res = await response.json()
             if (!res.success) {
                 setMessage(res.msg)
@@ -42,6 +45,7 @@ const Form = () => {
         } catch (err: any) {
             console.log(err);
         }
+        setLoading(false)
     }
 
 
@@ -94,9 +98,9 @@ const Form = () => {
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit"
                         >
-                            Login
+                            {loading ? "please wait..." : "Login"}
                         </button>
-                        <div className="mt-3 text-sky-600 underline underline-offset-4">
+                        <div className="mt-3 text-sky-600 text-sm underline underline-offset-4">
                             <Link href="/">Create a new account</Link>
                         </div>
                         {/* Response message */}

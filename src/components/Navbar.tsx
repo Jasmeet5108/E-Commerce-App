@@ -41,10 +41,6 @@ const Navbar = () => {
         setDropdownOpen(!isDropdownOpen);
     };
 
-    const hideMenu = () => {
-        setDropdownOpen(isDropdownOpen === false);
-    }
-
     useEffect(() => {
         getUserDetails()
     }, [])
@@ -92,7 +88,7 @@ const Navbar = () => {
                         </button>
 
                         {isDropdownOpen && (
-                            <div onClick={logout} className="origin-top-right flex justify-center items-center absolute right-0 mt-2 h-10 w-52 rounded-md shadow-lg text-white bg-slate-800 ring-1 ring-white ring-opacity-5">
+                            <div onClick={logout} className="origin-top-right cursor-pointer flex justify-center items-center absolute right-0 mt-2 h-10 w-52 rounded-md shadow-lg text-white bg-slate-800 ring-1 ring-white ring-opacity-5">
                                 <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                     <button className='flex gap-2'>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">

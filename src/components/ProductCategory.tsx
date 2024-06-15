@@ -6,8 +6,8 @@ const ProductCategory = () => {
       <ul className='flex flex-col md:text-lg bmd:text-xl'>
         <li className='cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800'>Electronics</li>
         <li className='cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800'>Jewelery</li>
-        <li className='cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800'>Men's Clothing</li>
-        <li className='cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800'>Women's Clothing</li>
+        <li className='cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800'>Men&apos;s Clothing</li>
+        <li className='cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800'>Women&apos;s Clothing</li>
       </ul>
     </div>
   )

@@ -7,13 +7,11 @@ connect();
 
 export async function POST(request: NextRequest) {
 
-    const secretKey = process.env.SECRET_KEY // key
+    const secretKey = process.env.SECRET_KEY
 
     try {
         const reqBody = await request.json() // same as req.body in express
         const { email, password } = reqBody;
-
-        console.log(reqBody);
 
         const user = await User.findOne({ email })
 

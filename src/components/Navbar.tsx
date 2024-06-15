@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
@@ -52,9 +53,23 @@ const Navbar = () => {
     return (
         <header className='sticky top-0 bg-slate-800'>
             <nav className='flex justify-between items-center max-w-screen-2xl px-3 mx-auto h-16'>
-                <h2 className='text-lg sm:text-[27px] text-white'>EasyMart</h2>
-                <div className='flex justify-end w-52'>
-                    <div className="relative inline-block text-center">
+                <div className='text-lg sm:text-xl text-white'>
+                    <div id='sidemenu' className='flex flex-col gap-2 sm:hidden'>
+                        <span className='w-9 h-1 bg-white rounded-xl'></span>
+                        <span className='w-9 h-1 bg-white rounded-xl'></span>
+                        <span className='w-9 h-1 bg-white rounded-xl'></span>
+                    </div>
+                    <ul className='hidden sm:flex gap-5'>
+                        <li>
+                            <Link href="/dashboard/cart">Cart</Link>
+                        </li>
+                        <li>
+                        <Link href="/dashboard/about">About</Link>
+                        </li>
+                    </ul>
+                </div>
+                <div className='flex justify-end w-52 sm:w-64'>
+                    <div className="relative text-center">
                         <button
                             onClick={toggleDropdown}
                             type="button"

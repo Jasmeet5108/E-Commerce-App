@@ -25,14 +25,16 @@ const Navbar = () => {
             const res = await response.json()
             if (res.success) {
                 router.push("/login")
+                setLoading(false)
             }
             else {
                 console.log("Error logging out");
+                setLoading(false)
             }
         } catch (error: any) {
             console.log(error.message);
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -71,7 +73,7 @@ const Navbar = () => {
                             type="button"
                             className="inline-flex justify-center items-center box-border p-2 border shadow-sm text-base font-medium rounded-md text-white bg-slate-800 hover:bg-slate-900"
                         >
-                            Welcome, {name}
+                            Welcome, {name ?? "user"}
                             <svg
                                 className={`-mr-1 ml-2 h-5 w-5 ${isDropdownOpen ? 'transform rotate-180' : ''}`}
                                 xmlns="http://www.w3.org/2000/svg"

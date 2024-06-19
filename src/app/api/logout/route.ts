@@ -9,7 +9,6 @@ export async function GET(request: NextRequest) {
                 message: "Logout Succesfull"
             }
         )
-
         response.cookies.set("token", "", { httpOnly: true })
 
         return response;

@@ -1,16 +1,18 @@
-import ProductContainer from "@/components/ProductContainer"
+import React, { Suspense } from 'react';
+import ProductContainer from "@/components/ProductContainer";
 
-const page = () => {
-
-  return (
-    <>
-      <div className="sm:flex sm:justify-between">
-        <div>
-          <ProductContainer />
-        </div>
-      </div>
-    </>
-  )
+const Page = () => {
+    return (
+        <>
+            <div className="sm:flex sm:justify-between">
+                <div>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <ProductContainer />
+                    </Suspense>
+                </div>
+            </div>
+        </>
+    );
 }
 
-export default page
+export default Page;

@@ -18,7 +18,8 @@ const Navbar = () => {
         setName(data.data.username)
     }
 
-    const logout = async () => {
+    const logout = async (e: React.MouseEvent) => {
+        e.preventDefault()
         setLoading(true)
         removeTokenFromLocalStorage()
         try {
@@ -50,10 +51,10 @@ const Navbar = () => {
         getUserDetails()
     }, [])
 
-    const handleLogoutClick = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        logout();
-    };
+    // const handleLogoutClick = (e: React.MouseEvent) => {
+    //     e.stopPropagation();
+    //     logout();
+    // };
 
 
     return (
@@ -98,17 +99,17 @@ const Navbar = () => {
                         </button>
 
                         {isDropdownOpen && (
-                            <div className="origin-top-right cursor-pointer flex justify-center items-center absolute right-0 mt-2 h-10 w-52 rounded-md shadow-lg text-white bg-slate-800 ring-1 ring-white ring-opacity-5">
+                            <button type='button' onClick={logout} className="origin-top-right cursor-pointer flex justify-center items-center absolute right-0 mt-2 h-10 w-52 rounded-md shadow-lg text-white bg-slate-800 ring-1 ring-white ring-opacity-5">
                                 <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                    <button onClick={handleLogoutClick} className='flex gap-2'>
+                                    <p className='flex gap-2'>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">
                                             <path d="M7.02331 5.5C4.59826 7.11238 3 9.86954 3 13C3 17.9706 7.02944 22 12 22C16.9706 22 21 17.9706 21 13C21 9.86954 19.4017 7.11238 16.9767 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             <path d="M12 2V10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
                                         <p>{loading ? "logging out..." : "Logout"}</p>
-                                    </button>
+                                    </p>
                                 </div>
-                            </div>
+                            </button>
                         )}
                     </div>
                 </div>

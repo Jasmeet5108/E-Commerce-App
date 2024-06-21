@@ -8,7 +8,6 @@ const Navbar = () => {
     const { removeTokenFromLocalStorage } = useFetch()
     const router = useRouter()
     const [name, setName] = useState(null)
-    const [loading, setLoading] = useState(false)
 
     const getUserDetails = async () => {
         const res = await fetch("/api/user", {
@@ -20,24 +19,15 @@ const Navbar = () => {
 
     const logout = async (e: React.MouseEvent) => {
         e.preventDefault()
-        setLoading(true)
-        removeTokenFromLocalStorage()
         try {
-            const response = await fetch("/api/logout", {
+            await fetch("/api/logout", {
                 method: "GET",
             })
-            const res = await response.json()
-            if (res.success) {
-                router.push("/login")
-                setLoading(false)
-            }
-            else {
-                console.log("Error logging out");
-                setLoading(false)
-            }
         } catch (error: any) {
-            console.log(error.message);
-            setLoading(false)
+            console.log("Error logging out:", error.message);
+        } finally {
+            removeTokenFromLocalStorage()
+            router.push("/login")
         }
     }
 
@@ -50,11 +40,6 @@ const Navbar = () => {
     useEffect(() => {
         getUserDetails()
     }, [])
-
-    // const handleLogoutClick = (e: React.MouseEvent) => {
-    //     e.stopPropagation();
-    //     logout();
-    // };
 
 
     return (
@@ -77,6 +62,7 @@ const Navbar = () => {
                 </div>
                 <div className='flex justify-end w-52 sm:w-64'>
                     <div className="relative text-center">
+                        {/* <button className='py-2 px-3 text-white border border-white rounded-lg' onClick={logout}>Logout</button> */}
                         <button
                             onClick={toggleDropdown}
                             type="button"
@@ -103,10 +89,10 @@ const Navbar = () => {
                                 <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                     <p className='flex gap-2'>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">
-                                            <path d="M7.02331 5.5C4.59826 7.11238 3 9.86954 3 13C3 17.9706 7.02944 22 12 22C16.9706 22 21 17.9706 21 13C21 9.86954 19.4017 7.11238 16.9767 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M7.02331 5.5C4.59826 7.11238 3 9.86954 3 13C3 17.9706 7.02944 22 12 22C16.9706 22 21 17.9706 21 13C21 9.86954 19.4017 7.11238 16.9767 5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             <path d="M12 2V10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
-                                        <p>{loading ? "logging out..." : "Logout"}</p>
+                                        <p>Logout</p>
                                     </p>
                                 </div>
                             </button>

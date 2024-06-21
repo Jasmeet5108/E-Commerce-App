@@ -3,9 +3,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import { useFetch } from '../../../context/FetchContext'
+
 
 const Form = () => {
 
+    const { storeTokenInLocalStorage } = useFetch()
     const router = useRouter()
     const [loading, setLoading] = useState<boolean>(false)
 
@@ -41,6 +44,7 @@ const Form = () => {
                 }, 2000);
             }
             else if (res.success) {
+                storeTokenInLocalStorage(res.token)
                 router.push("/dashboard")
             }
         } catch (err: any) {

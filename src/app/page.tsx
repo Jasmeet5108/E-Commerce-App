@@ -3,9 +3,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { useFetch } from "../../context/FetchContext"
 
 
 export default function Home() {
+
+  const { storeTokenInLocalStorage } = useFetch()
 
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
@@ -44,6 +47,7 @@ export default function Home() {
       }
 
       else if (res.success) {
+        storeTokenInLocalStorage(res.token)
         router.push("/dashboard")
       }
 

@@ -11,7 +11,7 @@ const ProductCategory = () => {
     <div className={`hidden sm:block bg-slate-800 text-white pt-20`}>
       <ul className='flex justify-center md:text-lg bmd:text-xl'>
 
-        <Link href="/dashboard" className={`cursor-pointer transition border ${pathName === "/dashboard" ? "text-slate-800 bg-white" : ""} border-white p-3 hover:bg-white hover:text-slate-800`}>
+        <Link href="/dashboard" className={`cursor-pointer transition border-b-2 border-black ${pathName === "/dashboard" ? "text-slate-800 bg-white" : ""} p-3 hover:bg-white hover:text-slate-800`}>
           <p>
             All Products
           </p>

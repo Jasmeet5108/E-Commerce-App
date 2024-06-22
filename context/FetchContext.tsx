@@ -1,7 +1,7 @@
 "use client"
 import React, { createContext, useContext, useState } from "react"
-// import { FakeDataProps } from '../types/FakeData';
 import { DummyDataProps } from "../types/DummyData";
+import { BASE_URL } from "../helpers/Base-URL";
 
 interface FetchContextProps {
     data: DummyDataProps[];
@@ -19,7 +19,7 @@ export const FetchProvider = ({ children }: { children: React.ReactNode }) => {
 
     const fetchData = async () => {
         setLoading(true)
-        const items = await fetch("https://dummyjson.com/products?limit=100", { method: "GET" })
+        const items = await fetch(`${BASE_URL}?limit=100`, { method: "GET" })
         const parsedItems = await items.json()
         setData(parsedItems.products)
         setLoading(false)

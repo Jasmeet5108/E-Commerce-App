@@ -28,8 +28,8 @@ const Navbar = () => {
         } catch (error: any) {
             console.log("Error logging out:", error.message);
         } finally {
-            removeTokenFromLocalStorage()
             router.push("/login")
+            removeTokenFromLocalStorage()
         }
         setLoading(false)
     }
@@ -46,7 +46,7 @@ const Navbar = () => {
 
 
     return (
-        <header className='sticky top-0 bg-slate-800'>
+        <header className='sticky top-0 bg-slate-800 z-50'>
             <nav className='flex justify-between items-center max-w-screen-2xl px-3 mx-auto h-16'>
                 <div className='text-lg sm:text-xl text-white'>
                     <div id='sidemenu' className='flex flex-col gap-2 sm:hidden'>

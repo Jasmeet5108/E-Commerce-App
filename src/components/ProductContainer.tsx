@@ -1,10 +1,10 @@
 "use client"
 import React, { useEffect } from 'react'
 import Image from 'next/image'
-import { useFetch } from '../../context/FetchContext'
 import Pagination from './Pagination'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import { useFetch } from '@/context/FetchContext'
 
 const ProductContainer = () => {
 

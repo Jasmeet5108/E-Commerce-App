@@ -2,7 +2,7 @@
 import React, { Suspense } from 'react';
 import ProductContainer from "@/components/ProductContainer";
 import { useRouter } from 'next/navigation';
-import { useToken } from '../../../context/TokenContext';
+import { useToken } from '@/context/TokenContext';
 
 
 const Page = () => {

@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { DummyDataProps } from '../../../../types/DummyData';
-import { BASE_URL } from '../../../../helpers/Base-URL';
+import { DummyDataProps } from '@/types/DummyData';
+import { BASE_URL } from '@/helpers/Base-URL';
 
 interface Props {
     params: {

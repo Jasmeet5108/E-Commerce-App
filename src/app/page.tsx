@@ -1,9 +1,9 @@
 "use client"
+import { useToken } from "@/context/TokenContext"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { useToken } from "../../context/TokenContext"
 
 
 export default function Home() {

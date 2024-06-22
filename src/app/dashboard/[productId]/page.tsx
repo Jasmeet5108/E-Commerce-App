@@ -9,7 +9,7 @@ interface Props {
     }
 }
 
-const page = ({ params }: Props) => {
+const Page: React.FC<Props> = ({ params }) => {
     const { productId } = params
     const [product, setProduct] = useState<DummyDataProps | null>(null)
 
@@ -35,4 +35,4 @@ const page = ({ params }: Props) => {
     )
 }
 
-export default page
+export default Page

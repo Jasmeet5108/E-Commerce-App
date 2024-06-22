@@ -9,7 +9,7 @@ interface Props {
     }
 }
 
-const page: React.FC<Props> = ({ params }) => {
+const page = ({ params }: Props) => {
     const { productId } = params
     const [product, setProduct] = useState<DummyDataProps | null>(null)
 

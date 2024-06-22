@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { FetchProvider } from "../../context/FetchContext";
+import { TokenProvider } from "../../context/TokenContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <FetchProvider>
-          {children}
+          <TokenProvider>
+            {children}
+          </TokenProvider>
         </FetchProvider>
       </body>
     </html>

@@ -3,12 +3,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
-import { useFetch } from '../../../context/FetchContext'
+import { useToken } from '../../../context/TokenContext'
 
 
 const Form = () => {
 
-    const { storeTokenInLocalStorage } = useFetch()
+    const { storeTokenInLocalStorage } = useToken()
     const router = useRouter()
     const [loading, setLoading] = useState<boolean>(false)
 

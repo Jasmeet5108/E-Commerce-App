@@ -1,12 +1,12 @@
 "use client"
 import React, { Suspense } from 'react';
 import ProductContainer from "@/components/ProductContainer";
-import { useFetch } from '../../../context/FetchContext';
 import { useRouter } from 'next/navigation';
+import { useToken } from '../../../context/TokenContext';
 
 
 const Page = () => {
-    const { isLoggedIn } = useFetch()
+    const { isLoggedIn } = useToken()
     const router = useRouter()
     if (!isLoggedIn) {
         router.push("/login")

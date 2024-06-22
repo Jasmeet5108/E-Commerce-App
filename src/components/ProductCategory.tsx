@@ -8,34 +8,64 @@ const ProductCategory = () => {
   const pathName = usePathname()
 
   return (
-    <div className={`hidden sm:block bg-slate-800 text-white w-52 md:w-64 bmd:w-80`}>
-      <ul className='flex flex-col md:text-lg bmd:text-xl'>
+    <div className={`hidden sm:block bg-slate-800 text-white pt-20`}>
+      <ul className='flex justify-center md:text-lg bmd:text-xl'>
 
         <Link href="/dashboard" className={`cursor-pointer transition border ${pathName === "/dashboard" ? "text-slate-800 bg-white" : ""} border-white p-3 hover:bg-white hover:text-slate-800`}>
           <p>
             All Products
           </p>
         </Link>
-        <Link href="/dashboard/electronics" className={`cursor-pointer transition border ${pathName === "/dashboard/electronics" ? "text-slate-800 bg-white" : ""} border-white p-3 hover:bg-white hover:text-slate-800`}>
+        <a className={`cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800`}>
           <p>
-            Electronics
+            Beauty
           </p>
-        </Link>
-        <Link href="/dashboard/jewelery" className={`cursor-pointer transition border ${pathName === "/dashboard/jewelery" ? "text-slate-800 bg-white" : ""} border-white p-3 hover:bg-white hover:text-slate-800`}>
+        </a>
+        <a className={`cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800`}>
           <p>
-            Jewelery
+            Fragrances
           </p>
-        </Link>
-        <Link href="/dashboard/mens-clothing" className={`cursor-pointer transition border ${pathName === "/dashboard/mens-clothing" ? "text-slate-800 bg-white" : ""} border-white p-3 hover:bg-white hover:text-slate-800`}>
+        </a>
+        <a className={`cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800`}>
           <p>
-            Men&apos;s Clothing
+            Furniture
           </p>
-        </Link>
-        <Link href="/dashboard/womens-clothing" className={`cursor-pointer transition border ${pathName === "/dashboard/womens-clothing" ? "text-slate-800 bg-white" : ""} border-white p-3 hover:bg-white hover:text-slate-800`}>
+        </a>
+        <a className={`cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800`}>
           <p>
-            Women&apos;s Clothing
+            Groceries
           </p>
-        </Link>
+        </a>
+        <a className={`cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800`}>
+          <p>
+            Home Decoration
+          </p>
+        </a>
+        <a className={`cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800`}>
+          <p>
+            Kitchen Accessories
+          </p>
+        </a>
+        <a className={`cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800`}>
+          <p>
+            Laptops
+          </p>
+        </a>
+        <a className={`cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800`}>
+          <p>
+            Men&apos;s Shirts
+          </p>
+        </a>
+        <a className={`cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800`}>
+          <p>
+            Men&apos;s Shoes
+          </p>
+        </a>
+        <a className={`cursor-pointer transition border border-white p-3 hover:bg-white hover:text-slate-800`}>
+          <p>
+            Men&apos;s Watches
+          </p>
+        </a>
       </ul>
     </div>
   )

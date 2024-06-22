@@ -1,18 +1,10 @@
 "use client"
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
-
-interface DataProps {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string
-}
+import { DummyDataProps } from '../../types/DummyData';
 
 interface Props {
-  data: DataProps[]
+  data: DummyDataProps[];
   hasPrevPage: boolean;
   hasNextPage: boolean;
 }
@@ -23,13 +15,13 @@ const Pagination = ({ data, hasPrevPage, hasNextPage }: Props) => {
   const searchParams = useSearchParams()
 
   const page = searchParams.get("page") ?? "1"
-  const perPage = searchParams.get("perPage") ?? "6"
+  const perPage = searchParams.get("perPage") ?? "10"
 
   return (
     <>
-      <div className='flex items-center justify-center gap-5 pb-5'>
+      <div className='flex items-center justify-center sm:justify-end gap-5 mt-10'>
         <button
-          className={`${!hasPrevPage ? "bg-gray-500" : "bg-blue-500"} text-white py-2 px-3 rounded-lg ${!hasPrevPage ? "cursor-not-allowed" : ""}`}
+          className={`${!hasPrevPage ? "bg-gray-500" : "bg-sky-500"} text-white py-2 px-3 rounded-lg ${!hasPrevPage ? "cursor-not-allowed" : ""}`}
           disabled={!hasPrevPage}
           onClick={() => {
             router.push(`/dashboard/?page=${Number(page) - 1}&perPage=${perPage}`)
@@ -47,7 +39,7 @@ const Pagination = ({ data, hasPrevPage, hasNextPage }: Props) => {
         </div>
 
         <button
-          className={`${!hasNextPage ? "bg-gray-500" : "bg-blue-500"} text-white py-2 px-3 rounded-lg ${!hasNextPage ? "cursor-not-allowed" : ""}`}
+          className={`${!hasNextPage ? "bg-gray-500" : "bg-sky-500"} text-white py-2 px-3 rounded-lg ${!hasNextPage ? "cursor-not-allowed" : ""}`}
           disabled={!hasNextPage}
           onClick={() => {
             router.push(`/dashboard/?page=${Number(page) + 1}&perPage=${perPage}`)

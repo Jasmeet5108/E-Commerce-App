@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
             email: user.email
         }
 
-        const token = jwt.sign(payload, secretKey!, { expiresIn: "1h" })
+        const token = jwt.sign(payload, secretKey!, { expiresIn: "1d" })
 
         const response = NextResponse.json({
             success: true,

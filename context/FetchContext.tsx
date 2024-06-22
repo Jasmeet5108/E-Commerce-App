@@ -1,9 +1,10 @@
 "use client"
 import React, { createContext, useContext, useState } from "react"
-import { FakeDataProps } from '../types/FakeData';
+// import { FakeDataProps } from '../types/FakeData';
+import { DummyDataProps } from "../types/DummyData";
 
 interface FetchContextProps {
-    data: FakeDataProps[];
+    data: DummyDataProps[];
     fetchData: () => void;
     loading: boolean;
 }
@@ -12,15 +13,15 @@ const FetchContext = createContext<FetchContextProps | null>(null)
 
 export const FetchProvider = ({ children }: { children: React.ReactNode }) => {
 
-    const [data, setData] = useState<FakeDataProps[]>([])
+    const [data, setData] = useState<DummyDataProps[]>([])
     const [loading, setLoading] = useState<boolean>(false)
 
 
     const fetchData = async () => {
         setLoading(true)
-        const items = await fetch("https://fakestoreapi.com/products", { method: "GET" })
+        const items = await fetch("https://dummyjson.com/products?limit=100", { method: "GET" })
         const parsedItems = await items.json()
-        setData(parsedItems)
+        setData(parsedItems.products)
         setLoading(false)
     }
 

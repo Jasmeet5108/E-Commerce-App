@@ -88,7 +88,7 @@ const Navbar = () => {
                         </button>
 
                         {isDropdownOpen && (
-                            <button type='button' onClick={logout} className="origin-top-right cursor-pointer flex justify-center items-center absolute right-0 mt-2 h-10 w-52 rounded-md shadow-lg text-white bg-slate-800 ring-1 ring-white ring-opacity-5">
+                            <button type='button' onClick={logout} className="origin-top-right cursor-pointer flex justify-center items-center absolute right-0 mt-2 h-10 w-52 rounded-md shadow-lg text-white border border-white bg-slate-800 ring-1 ring-white ring-opacity-5">
                                 <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                     <p>
                                         {

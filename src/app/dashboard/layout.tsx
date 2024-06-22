@@ -6,13 +6,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <div>
             <Navbar />
-            <div className="sm:flex sm:justify-between">
-                <div className="sm:w-1/3">
-                    <ProductCategory />
-                </div>
-                <div className="sm:w-2/3">
-                    {children}
-                </div>
+            <ProductCategory />
+            <div className="max-w-screen-2xl mx-auto">
+                {children}
             </div>
         </div>
     );

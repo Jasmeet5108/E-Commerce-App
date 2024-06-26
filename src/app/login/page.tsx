@@ -45,7 +45,7 @@ const Form = () => {
             }
             else if (res.success) {
                 storeTokenInLocalStorage(res.token)
-                router.push("/dashboard")
+                router.replace("/?loggedIn=true")
             }
         } catch (err: any) {
             console.log(err);
@@ -106,7 +106,7 @@ const Form = () => {
                             </button>
                         }
                         <div className="mt-4 text-sky-600 text-sm underline underline-offset-4">
-                            <Link href="/">Create a new account</Link>
+                            <Link href="/register">Create a new account</Link>
                         </div>
                         {/* Response message */}
                         {message && <div className='mt-4 border border-red-600 py-1 px-2 bg-red-100 rounded-md'>

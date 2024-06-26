@@ -17,6 +17,9 @@ const Pagination = ({ data, hasPrevPage, hasNextPage }: Props) => {
   const page = searchParams.get("page") ?? "1"
   const perPage = searchParams.get("perPage") ?? "10"
 
+  const isLoggedIn = searchParams.get("loggedIn")
+  const loginTrue = !!isLoggedIn
+
   return (
     <>
       <div className='flex items-center justify-center sm:justify-end gap-5 mt-10'>
@@ -24,7 +27,8 @@ const Pagination = ({ data, hasPrevPage, hasNextPage }: Props) => {
           className={`${!hasPrevPage ? "bg-gray-500" : "bg-sky-500"} text-white py-2 px-3 rounded-lg ${!hasPrevPage ? "cursor-not-allowed" : ""}`}
           disabled={!hasPrevPage}
           onClick={() => {
-            router.push(`/dashboard/?page=${Number(page) - 1}&perPage=${perPage}`)
+            // router.push(`/?page=${Number(page) - 1}&perPage=${perPage}`)
+            router.push(`${loginTrue ? `/?page=${Number(page) - 1}&perPage=${perPage}&loggedIn=true` : `/?page=${Number(page) - 1}&perPage=${perPage}`}`)
           }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#000000" fill="none">
@@ -42,7 +46,8 @@ const Pagination = ({ data, hasPrevPage, hasNextPage }: Props) => {
           className={`${!hasNextPage ? "bg-gray-500" : "bg-sky-500"} text-white py-2 px-3 rounded-lg ${!hasNextPage ? "cursor-not-allowed" : ""}`}
           disabled={!hasNextPage}
           onClick={() => {
-            router.push(`/dashboard/?page=${Number(page) + 1}&perPage=${perPage}`)
+            // router.push(`/?page=${Number(page) + 1}&perPage=${perPage}`)
+            router.push(`${loginTrue ? `/?page=${Number(page) + 1}&perPage=${perPage}&loggedIn=true` : `/?page=${Number(page) + 1}&perPage=${perPage}`}`)
           }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#000000" fill="none">

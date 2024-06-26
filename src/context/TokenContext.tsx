@@ -1,6 +1,6 @@
 "use client"
 import { createContext, useContext, useEffect, useState } from "react"
-import useAuthRedirect from "../hooks/useAuthRedirect";
+// import useAuthRedirect from "../hooks/useAuthRedirect";
 
 interface TokenContextProps {
     isLoggedIn: boolean;
@@ -21,7 +21,7 @@ export const TokenProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }, []);
 
-    useAuthRedirect(isLoggedIn)
+    // useAuthRedirect(isLoggedIn)
 
     const storeTokenInLocalStorage = (token: string) => {
         if (typeof window !== "undefined") {

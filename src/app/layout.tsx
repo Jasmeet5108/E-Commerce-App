@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { TokenProvider } from "@/context/TokenContext";
 import { FetchProvider } from "@/context/FetchContext";
+import Navbar from "@/components/Navbar";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,7 +23,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <FetchProvider>
           <TokenProvider>
-            {children}
+            <div>
+              <Navbar />
+              <div className="max-w-screen-2xl mx-auto">
+                {children}
+              </div>
+            </div>
           </TokenProvider>
         </FetchProvider>
       </body>

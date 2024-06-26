@@ -16,6 +16,8 @@ const ProductContainer = () => {
         fetchData()
     }, [])
 
+    const isLoggedIn = searchParams.get("loggedIn")
+    const loginTrue = !!isLoggedIn
     const page = searchParams.get("page") ?? "1"
     const perPage = searchParams.get("perPage") ?? "10"
 
@@ -37,7 +39,15 @@ const ProductContainer = () => {
                             <Image className='w-36 h-48 object-contain sm:w-40 sm:h-48 rounded-xl' width={100} height={100} src={item.images[0]} alt="Image" />
                             <p className='text-center text-base font-semibold line-clamp-3'>{item.title}</p>
                             <p className='font-semibold'>Price: ${item.price}</p>
-                            <Link href={`/dashboard/${item.id}`} className='bg-sky-500 text-white py-1 px-2 sm:py-2 sm:px-3 rounded-lg hover:bg-sky-600'>View</Link>
+                            {loginTrue ? (
+                                <Link href={`/${item.id}/?loggedIn=true`} className="bg-sky-500 text-white py-1 px-2 sm:py-2 sm:px-3 rounded-lg hover:bg-sky-600">
+                                    View
+                                </Link>
+                            ) : (
+                                <div className="bg-gray-300 text-gray-600 py-1 px-2 sm:py-2 sm:px-3 rounded-lg cursor-not-allowed">
+                                    View
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>

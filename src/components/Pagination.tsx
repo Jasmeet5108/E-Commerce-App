@@ -3,6 +3,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
 import { DummyDataProps } from '@/types/DummyData';
 
+
 interface Props {
   data: DummyDataProps[];
   hasPrevPage: boolean;

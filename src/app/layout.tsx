@@ -4,6 +4,7 @@ import "./globals.css";
 import { TokenProvider } from "@/context/TokenContext";
 import { FetchProvider } from "@/context/FetchContext";
 import Navbar from "@/components/Navbar";
+import { Suspense } from "react";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,7 +25,9 @@ export default function RootLayout({
         <FetchProvider>
           <TokenProvider>
             <div>
-              <Navbar />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+              </Suspense>
               <div className="max-w-screen-2xl mx-auto">
                 {children}
               </div>

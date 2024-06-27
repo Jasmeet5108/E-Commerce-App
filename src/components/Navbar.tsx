@@ -56,7 +56,7 @@ const Navbar = () => {
 
     return (
         <header className='sticky top-0 bg-slate-800 z-50'>
-            <nav className='flex justify-between items-center max-w-screen-2xl px-3 mx-auto h-16'>
+            <nav className='flex justify-between items-center max-w-screen-2xl px-3 mx-auto h-16 sm:h-20'>
                 <div className='text-lg sm:text-xl text-white'>
                     <div id='sidemenu' className='flex flex-col gap-2 sm:hidden'>
                         <span className='w-9 h-1 bg-white rounded-xl'></span>
@@ -98,7 +98,7 @@ const Navbar = () => {
                                     </svg>
                                 </button>
                                 :
-                                <div className='flex gap-5 text-white'>
+                                <div className='flex gap-5 sm:gap-10 text-white'>
                                     <div className='text-base sm:text-xl'>
                                         <Link href="/register">Register</Link>
                                     </div>

@@ -35,20 +35,22 @@ const ProductContainer = () => {
                 <div className='text-2xl my-5 font-semibold'>Products</div>
                 <div className='flex flex-wrap justify-center items-center gap-7 sm:gap-10 py-10 sm:py-5 sm:mt-16'>
                     {loading ? "loading..." : data && slicedData.map((item, index) => (
-                        <div key={index} className='flex flex-col card cursor-pointer bg-white h-[380px] w-72 sm:h-[380px] hover:scale-105 transition sm:w-[300px] gap-6 pt-2 items-center rounded-xl'>
-                            <Image className='w-36 h-48 object-contain sm:w-40 sm:h-48 rounded-xl' width={100} height={100} src={item.images[0]} alt="Image" />
-                            <p className='text-center text-base font-semibold line-clamp-3'>{item.title}</p>
-                            <p className='font-semibold'>Price: ${item.price}</p>
-                            {loginTrue ? (
-                                <Link href={`/${item.id}/?loggedIn=true`} className="bg-sky-500 text-white py-1 px-2 sm:py-2 sm:px-3 rounded-lg hover:bg-sky-600">
-                                    View
-                                </Link>
-                            ) : (
-                                <div className="bg-gray-300 text-gray-600 py-1 px-2 sm:py-2 sm:px-3 rounded-lg cursor-not-allowed">
-                                    View
-                                </div>
-                            )}
-                        </div>
+                        <Link href={`${loginTrue ? `/${item.id}/?loggedIn=true` : ""}`}>
+                            <div key={index} className='flex flex-col card cursor-pointer bg-white h-[380px] w-72 sm:h-[380px] hover:scale-105 transition sm:w-[300px] gap-6 pt-2 items-center rounded-xl'>
+                                <Image className='w-36 h-48 object-contain sm:w-40 sm:h-48 rounded-xl' width={100} height={100} src={item.images[0]} alt="Image" />
+                                <p className='text-center text-base font-semibold line-clamp-3'>{item.title}</p>
+                                <p className='font-semibold'>Price: ${item.price}</p>
+                                {loginTrue ? (
+                                    <Link href={`/${item.id}/?loggedIn=true`} className="bg-sky-500 text-white text-sm py-2 px-3 rounded-lg hover:bg-sky-600">
+                                        View
+                                    </Link>
+                                ) : (
+                                    <div className="bg-gray-300 text-gray-600 py-1 px-2 sm:py-2 sm:px-3 rounded-lg cursor-not-allowed">
+                                        View
+                                    </div>
+                                )}
+                            </div>
+                        </Link>
                     ))}
                 </div>
             </div>

@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { DummyDataProps } from '@/types/DummyData';
 import { BASE_URL } from '@/helpers/Base-URL';
 import Image from 'next/image';
@@ -15,11 +15,11 @@ const Page: React.FC<Props> = ({ params }) => {
     const [product, setProduct] = useState<DummyDataProps | null>(null)
 
 
-    const getProduct = async () => {
+    const getProduct = useCallback(async () => {
         const response = await fetch(`${BASE_URL}${productId}`, { method: "GET" })
         const data = await response.json()
         setProduct(data)
-    }
+    }, [productId])
 
     useEffect(() => {
         getProduct()
@@ -52,7 +52,7 @@ const Page: React.FC<Props> = ({ params }) => {
                                 <p>
                                     {
                                         product.reviews.map((review) => (
-                                            <div key={review.reviewerName} className='flex bg-[#d5d7df] flex-col gap-2 border border-black my-4 rounded-lg p-2'>
+                                            <div key={`${review.reviewerEmail}-${review.date}-${review.rating}`} className='flex bg-[#d5d7df] flex-col gap-2 border border-black my-4 rounded-lg p-2'>
                                                 <div className='flex items-center gap-2'>
                                                     <p className='bg-slate-700 text-white w-fit p-2 rounded-full text-xs'>{getNameInitials(review.reviewerName)}</p>
                                                     <p className='font-semibold'>{review.reviewerName}</p>

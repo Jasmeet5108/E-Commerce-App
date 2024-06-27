@@ -52,7 +52,7 @@ const Page: React.FC<Props> = ({ params }) => {
                                 <p>
                                     {
                                         product.reviews.map((review, index) => (
-                                            <div key={`${review.reviewerEmail}-${review.date}-${review.rating}-${index}`} className='flex bg-[#d5d7df] flex-col gap-2 border border-black my-4 rounded-lg p-2'>
+                                            <div key={index} className='flex bg-[#d5d7df] flex-col gap-2 border border-black my-4 rounded-lg p-2'>
                                                 <div className='flex items-center gap-2'>
                                                     <p className='bg-slate-700 text-white w-fit p-2 rounded-full text-xs'>{getNameInitials(review.reviewerName)}</p>
                                                     <p className='font-semibold'>{review.reviewerName}</p>

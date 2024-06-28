@@ -1,5 +1,5 @@
 "use client"
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useCallback, useContext, useState } from "react"
 import { DummyDataProps } from "../types/DummyData";
 import { BASE_URL } from "../helpers/Base-URL";
 
@@ -17,13 +17,14 @@ export const FetchProvider = ({ children }: { children: React.ReactNode }) => {
     const [loading, setLoading] = useState<boolean>(false)
 
 
-    const fetchData = async () => {
-        setLoading(true)
-        const items = await fetch(`${BASE_URL}?limit=100`, { method: "GET" })
-        const parsedItems = await items.json()
-        setData(parsedItems.products)
-        setLoading(false)
-    }
+    const fetchData = useCallback(
+        async () => {
+            setLoading(true)
+            const items = await fetch(`${BASE_URL}?limit=200`, { method: "GET" })
+            const parsedItems = await items.json()
+            setData(parsedItems.products)
+            setLoading(false)
+        }, [])
 
     return (
         <FetchContext.Provider value={{ data, fetchData, loading }}>

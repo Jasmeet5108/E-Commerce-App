@@ -46,7 +46,7 @@ const Page: React.FC<Props> = ({ params }) => {
                         </div>
                         <div className='max-w-screen-md mx-auto'>
                             <div>
-                                <p className='text-xl my-5 pad:my-7 font-semibold px-2'>Comments</p>
+                                <p className='text-xl mt-8 pad:my-7 font-semibold px-2'>Reviews</p>
                             </div>
                             <div className='w-[340px] pad:w-[400px] pl-2 sm:mx-auto sm:w-[600px]'>
                                 <p>

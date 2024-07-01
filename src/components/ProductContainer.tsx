@@ -80,16 +80,6 @@ const ProductContainer = () => {
     const isLoggedIn = searchParams.get("loggedIn")
     const loginTrue = !!isLoggedIn
 
-    // const checkSomething = (e: React.MouseEvent) => {
-    //     e.preventDefault()
-    //     if (!loginTrue) {
-    //         setPopUpMessage("Kindly log in or register first")
-    //         setTimeout(() => {
-    //             setPopUpMessage(null);
-    //         }, 2500);
-    //     }
-    // }
-
     const page = searchParams.get("page") ?? "1"
     const perPage = searchParams.get("perPage") ?? "10"
 
@@ -114,7 +104,7 @@ const ProductContainer = () => {
                     <div className='text-2xl my-10 font-semibold'>{categoryName}</div>
                     <div>
                         <div className='flex gap-3 px-2'>
-                            <p className='font-semibold'>Filter</p>
+                            <p className='font-semibold lg:text-lg'>Filter</p>
                             <button onClick={filterModalToggle}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#000000" fill="none">
                                     <path d="M13 4L3 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -145,7 +135,7 @@ const ProductContainer = () => {
                 </div>
                 <div className='flex z-10 flex-wrap justify-center mt-[-270px] items-center gap-7 sm:gap-10 py-10 sm:py-5 sm:mt-[-250px]'>
                     {loading ? "loading..." : data && slicedData.map((item, index) => (
-                        <Link key={index} href={`${loginTrue ? `/${item.id}/?loggedIn=true` : ""}`}>
+                        <Link key={index} href={`${loginTrue ? `/${item.id}/?loggedIn=true` : `/${item.id}/`}`}>
                             <div className='flex flex-col card cursor-pointer bg-white h-[380px] w-72 sm:h-[380px] hover:scale-105 transition sm:w-[300px] gap-6 pt-2 items-center rounded-xl'>
                                 <Image className='w-36 h-48 object-contain sm:w-40 sm:h-48 rounded-xl' width={100} height={100} src={item.images[0]} alt="Image" />
                                 <p className='text-center text-base font-semibold line-clamp-3'>{item.title}</p>

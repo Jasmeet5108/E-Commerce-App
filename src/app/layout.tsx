@@ -6,7 +6,6 @@ import { FetchProvider } from "@/context/FetchContext";
 import Navbar from "@/components/Navbar";
 import { Suspense } from "react";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,18 +21,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <FetchProvider>
-          <TokenProvider>
-            <div>
-              <Suspense fallback={<div>Loading...</div>}>
-                <Navbar />
-              </Suspense>
-              <div className="max-w-screen-2xl mx-auto">
-                {children}
+          <FetchProvider>
+            <TokenProvider>
+              <div>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Navbar />
+                </Suspense>
+                <div className="max-w-screen-2xl mx-auto">
+                  {children}
+                </div>
               </div>
-            </div>
-          </TokenProvider>
-        </FetchProvider>
+            </TokenProvider>
+          </FetchProvider>
       </body>
     </html>
   );

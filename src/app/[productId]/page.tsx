@@ -34,13 +34,16 @@ const Page: React.FC<Props> = ({ params }) => {
             {product && (
                 <>
                     <div className='flex flex-col justify-center'>
-                        <div className='flex flex-col sm:flex-row items-center justify-center border p-2 bg-[#d5d7df] border-black w-80 pad:w-96 sm:w-[500px] mx-auto mt-10 rounded-xl'>
-                            <Image width={100} height={100} src={product.images[0]} className='w-72 sm:w-60 object-contain h-60' alt='Image' />
+                        <div className='flex flex-col sm:flex-row items-center justify-center border p-2 bg-[#d5d7df] border-black w-80 pad:w-96 sm:w-[500px] md:w-[700px] mx-auto mt-10 rounded-xl'>
+                            <Image width={100} height={100} src={product.images[0]} className='w-72 sm:w-60 object-contain h-60 md:h-80' alt='Image' />
                             <div className='flex flex-col'>
                                 <p className='text-xl text-center font-semibold my-2'>{product.title}</p>
                                 <hr />
                                 <p className='text-sm px-2 my-4'>{product.description}</p>
-                                <p className='my-3'>Rating: {product.rating}</p>
+                                <div className='flex justify-between items-center'>
+                                    <p className='my-3'>Rating: {product.rating}</p>
+                                    <button className='py-2 px-3 bg-sky-600 text-sm text-white font-semibold rounded-lg flex items-center'>Add to cart</button>
+                                </div>
                             </div>
 
                         </div>

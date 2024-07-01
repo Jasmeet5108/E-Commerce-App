@@ -11,6 +11,8 @@ const ProductContainer = () => {
     const [filterModal, setFilterModal] = useState(false)
     const [activeTab, setActiveTab] = useState("All Products")
     const [filteredData, setFilteredData] = useState<DummyDataProps[]>([]);
+    const [categoryName, setCategoryName] = useState("All Products")
+    // const [popUpMessage, setPopUpMessage] = useState<string | null>(null)
 
     const filterModalToggle = () => {
         setFilterModal(prev => !prev)
@@ -32,11 +34,11 @@ const ProductContainer = () => {
     useEffect(() => {
         let filtered = data;
 
-        if (activeTab === "beauty & fragrances") {
+        if (activeTab === "Beauty & Fragrances") {
             filtered = data.filter(
                 (item) => item.category === "beauty" || item.category === "fragrances"
             );
-        } else if (activeTab === "gadgets") {
+        } else if (activeTab === "Gadgets") {
             filtered = data.filter(
                 (item) =>
                     item.category === "laptops" ||
@@ -44,24 +46,24 @@ const ProductContainer = () => {
                     item.category === "smartphones" ||
                     item.category === "tablets"
             );
-        } else if (activeTab === "vehicles") {
+        } else if (activeTab === "Vehicles") {
             filtered = data.filter(
                 (item) => item.category === "motorcycle" || item.category === "vehicle"
             );
-        } else if (activeTab === "kitchen") {
+        } else if (activeTab === "Kitchen-Items") {
             filtered = data.filter(
                 (item) =>
                     item.category === "kitchen-accessories" ||
                     item.category === "groceries"
             );
-        } else if (activeTab === "men") {
+        } else if (activeTab === "Men") {
             filtered = data.filter(
                 (item) =>
                     item.category === "mens-shirts" ||
                     item.category === "mens-shoes" ||
                     item.category === "mens-watches"
             );
-        } else if (activeTab === "women") {
+        } else if (activeTab === "Women") {
             filtered = data.filter(
                 (item) =>
                     item.category === "womens-bags" ||
@@ -71,11 +73,23 @@ const ProductContainer = () => {
         }
 
         setFilteredData(filtered as DummyDataProps[]);
+        setCategoryName(activeTab)
     }, [activeTab, data]);
 
 
     const isLoggedIn = searchParams.get("loggedIn")
     const loginTrue = !!isLoggedIn
+
+    // const checkSomething = (e: React.MouseEvent) => {
+    //     e.preventDefault()
+    //     if (!loginTrue) {
+    //         setPopUpMessage("Kindly log in or register first")
+    //         setTimeout(() => {
+    //             setPopUpMessage(null);
+    //         }, 2500);
+    //     }
+    // }
+
     const page = searchParams.get("page") ?? "1"
     const perPage = searchParams.get("perPage") ?? "10"
 
@@ -86,15 +100,18 @@ const ProductContainer = () => {
 
     return (
         <>
-            <div className='px-2'>
+            <div className='px-2 mt-[-30px]'>
                 {
                     filteredData.length > 10 &&
                     <div>
                         <Pagination data={filteredData} hasNextPage={lastIndex < filteredData.length} hasPrevPage={firstIndex > 0} />
                     </div>
                 }
+                {/* {
+                    popUpMessage && <div className='flex justify-center items-center mt-5 py-1 px-2 rounded-lg bg-slate-800 text-white h-10'>{popUpMessage}</div>
+                } */}
                 <div className='flex items-center justify-between'>
-                    <div className='text-2xl my-10 font-semibold'>Products</div>
+                    <div className='text-2xl my-10 font-semibold'>{categoryName}</div>
                     <div>
                         <div className='flex gap-3 px-2'>
                             <p className='font-semibold'>Filter</p>
@@ -114,15 +131,15 @@ const ProductContainer = () => {
                         </div>
                     </div>
                 </div>
-                <div className={`z-50 relative mt-[-30px] ${filterModal ? "visible flex justify-end" : "invisible"}`}>
+                <div className={`z-50 relative mt-[-30px] transition duration-500 ${filterModal ? "visible flex justify-end opacity-100 -translate-x-2 translate-y-[2px]" : "invisible opacity-0 translate-x-0 translate-y-0"}`}>
                     <div className='flex flex-col w-52 border border-black rounded-md bg-slate-200'>
-                        <button type='button' onClick={() => handleTabChange("All Products")} className='border-[1px] border-gray-500 py-2 px-3'>All Products</button>
-                        <button type='button' onClick={() => handleTabChange("beauty & fragrances")} className='border-[1px] border-gray-500 py-2 px-3'>Beauty & Fragrances</button>
-                        <button type='button' onClick={() => handleTabChange("gadgets")} className='border-[1px] border-gray-500 py-2 px-3'>Gadgets</button>
-                        <button type='button' onClick={() => handleTabChange("vehicles")} className='border-[1px] border-gray-500 py-2 px-3'>Vehicles</button>
-                        <button type='button' onClick={() => handleTabChange("kitchen")} className='border-[1px] border-gray-500 py-2 px-3'>Kitchen Accessories</button>
-                        <button type='button' onClick={() => handleTabChange("men")} className='border-[1px] border-gray-500 py-2 px-3'>Men&apos;s Category</button>
-                        <button type='button' onClick={() => handleTabChange("women")} className='border-[1px] border-gray-500 py-2 px-3'>Women&apos;s Category</button>
+                        <button type='button' onClick={() => handleTabChange("All Products")} className={`border-[1px] ${activeTab === "All Products" ? "bg-slate-800 text-white" : ""} border-gray-500 py-2 px-3`}>All Products</button>
+                        <button type='button' onClick={() => handleTabChange("Beauty & Fragrances")} className={`border-[1px] ${activeTab === "Beauty & Fragrances" ? "bg-slate-800 text-white" : ""} border-gray-500 py-2 px-3`}>Beauty & Fragrances</button>
+                        <button type='button' onClick={() => handleTabChange("Gadgets")} className={`border-[1px] ${activeTab === "Gadgets" ? "bg-slate-800 text-white" : ""} border-gray-500 py-2 px-3`}>Gadgets</button>
+                        <button type='button' onClick={() => handleTabChange("Vehicles")} className={`border-[1px] ${activeTab === "Vehicles" ? "bg-slate-800 text-white" : ""} border-gray-500 py-2 px-3`}>Vehicles</button>
+                        <button type='button' onClick={() => handleTabChange("Kitchen-Items")} className={`border-[1px] ${activeTab === "Kitchen-Items" ? "bg-slate-800 text-white" : ""} border-gray-500 py-2 px-3`}>Kitchen Accessories</button>
+                        <button type='button' onClick={() => handleTabChange("Men")} className={`border-[1px] ${activeTab === "Men" ? "bg-slate-800 text-white" : ""} border-gray-500 py-2 px-3`}>Men&apos;s Category</button>
+                        <button type='button' onClick={() => handleTabChange("Women")} className={`border-[1px] ${activeTab === "Women" ? "bg-slate-800 text-white" : ""} border-gray-500 py-2 px-3`}>Women&apos;s Category</button>
                     </div>
 
                 </div>
@@ -133,7 +150,7 @@ const ProductContainer = () => {
                                 <Image className='w-36 h-48 object-contain sm:w-40 sm:h-48 rounded-xl' width={100} height={100} src={item.images[0]} alt="Image" />
                                 <p className='text-center text-base font-semibold line-clamp-3'>{item.title}</p>
                                 <p className='font-semibold'>Price: ${item.price}</p>
-                                {loginTrue ? (
+                                {/* {loginTrue ? (
                                     <Link href={`/${item.id}/?loggedIn=true`} className="bg-sky-500 text-white text-sm py-2 px-3 rounded-lg hover:bg-sky-600">
                                         View
                                     </Link>
@@ -141,7 +158,7 @@ const ProductContainer = () => {
                                     <div className="bg-gray-300 text-gray-600 py-1 px-2 sm:py-2 sm:px-3 rounded-lg cursor-not-allowed">
                                         View
                                     </div>
-                                )}
+                                )} */}
                             </div>
                         </Link>
                     ))}

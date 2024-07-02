@@ -3,7 +3,7 @@ import { useToken } from '@/context/TokenContext'
 import Link from 'next/link'
 import React from 'react'
 
-const page = () => {
+const Page = () => {
 
   const { isLoggedIn } = useToken()
 
@@ -23,4 +23,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

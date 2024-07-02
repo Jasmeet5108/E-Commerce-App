@@ -21,7 +21,6 @@ const Page: React.FC<Props> = ({ params }) => {
     const [product, setProduct] = useState<DummyDataProps | null>(null)
     const [popUpMessage, setPopUpMessage] = useState<string | null>(null)
 
-
     const getProduct = useCallback(async () => {
         const response = await fetch(`${BASE_URL}${productId}`, { method: "GET" })
         const data = await response.json()
@@ -30,7 +29,7 @@ const Page: React.FC<Props> = ({ params }) => {
 
     useEffect(() => {
         getProduct()
-    }, [])
+    }, [getProduct])
 
     const getNameInitials = (name: string) => {
         return name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0)

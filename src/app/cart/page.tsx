@@ -4,7 +4,7 @@ import React from 'react'
 import { useCart } from '@/context/CartContext'
 import Image from 'next/image'
 
-const page = () => {
+const Page = () => {
 
   const { cart } = useCart()
 
@@ -38,4 +38,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

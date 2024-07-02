@@ -16,12 +16,6 @@ const Navbar = () => {
     const searchParams = useSearchParams();
     const isLoggedIn = searchParams.get("loggedIn");
 
-    useEffect(() => {
-        if (isLoggedIn === "true" && !name) {
-            getUserDetails();
-        }
-    }, [isLoggedIn, name]);
-
     const getUserDetails = async () => {
         try {
             const res = await fetch("/api/user", {
@@ -33,6 +27,12 @@ const Navbar = () => {
             console.error("Error fetching user details:", error);
         }
     };
+
+    useEffect(() => {
+        if (isLoggedIn === "true" && !name) {
+            getUserDetails();
+        }
+    }, [isLoggedIn, name]);
 
     const logout = async (e: React.MouseEvent) => {
         e.preventDefault();
@@ -73,10 +73,10 @@ const Navbar = () => {
 
                         <ul className='hidden sm:flex gap-5'>
                             <li>
-                                <Link href="/cart">Cart</Link>
+                                <Link href={`${isLoggedIn ? "/cart/?loggedIn=true" : "/cart"}`}>Cart</Link>
                             </li>
                             <li>
-                                <Link href="/about">About</Link>
+                                <Link href={`${isLoggedIn ? "/about/?loggedIn=true" : "/about"}`}>About</Link>
                             </li>
                         </ul>
                     </div>

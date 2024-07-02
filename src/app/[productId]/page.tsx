@@ -1,9 +1,10 @@
 "use client"
 import React, { useCallback, useEffect, useState } from 'react'
-import { DummyDataProps } from '@/types/DummyData';
+import { DummyDataProps, DummyDataWithQuantity } from '@/types/DummyData';
 import { BASE_URL } from '@/helpers/Base-URL';
 import Image from 'next/image';
 import { useToken } from '@/context/TokenContext';
+import { useCart } from '@/context/CartContext';
 
 interface Props {
     params: {
@@ -14,6 +15,7 @@ interface Props {
 const Page: React.FC<Props> = ({ params }) => {
 
     const { isLoggedIn } = useToken()
+    const { addToCart } = useCart()
 
     const { productId } = params
     const [product, setProduct] = useState<DummyDataProps | null>(null)
@@ -34,8 +36,7 @@ const Page: React.FC<Props> = ({ params }) => {
         return name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0)
     }
 
-    const addToCart = (e: React.MouseEvent) => {
-        e.preventDefault()
+    const addItemToCart = (product: DummyDataProps) => {
         if (!isLoggedIn) {
             setPopUpMessage("Kindly log in or register first")
             setTimeout(() => {
@@ -43,7 +44,9 @@ const Page: React.FC<Props> = ({ params }) => {
             }, 2000);
         }
         else {
-            setPopUpMessage("Well Done")
+            const productWithQuantity: DummyDataWithQuantity = { ...product, quantity: 1 };
+            addToCart(productWithQuantity);
+            setPopUpMessage("Item added to cart")
             setTimeout(() => {
                 setPopUpMessage(null);
             }, 2000);
@@ -63,7 +66,7 @@ const Page: React.FC<Props> = ({ params }) => {
                                 <p className='text-sm md:text-base xl:text-lg px-2 my-4'>{product.description}</p>
                                 <div className='flex justify-between md:justify-around items-center'>
                                     <p className='my-3 lg:text-lg'>Rating: {product.rating}</p>
-                                    <button type='button' onClick={addToCart} className='py-2 px-3 bg-sky-600 text-xs lg:text-sm text-white font-semibold rounded-lg flex items-center'>Add to cart</button>
+                                    <button type='button' onClick={() => addItemToCart(product)} className='py-2 px-3 bg-sky-600 text-xs lg:text-sm text-white font-semibold rounded-lg flex items-center'>Add to cart</button>
                                 </div>
                             </div>
                         </div>

@@ -39,3 +39,7 @@ export interface DummyDataProps {
     images: string[];
     thumbnail: string;
 }
+
+export interface DummyDataWithQuantity extends DummyDataProps {
+    quantity: number;
+}

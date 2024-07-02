@@ -5,6 +5,7 @@ import { TokenProvider } from "@/context/TokenContext";
 import { FetchProvider } from "@/context/FetchContext";
 import Navbar from "@/components/Navbar";
 import { Suspense } from "react";
+import { CartProvider } from "@/context/CartContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-          <FetchProvider>
-            <TokenProvider>
+        <FetchProvider>
+          <TokenProvider>
+            <CartProvider>
               <div>
                 <Suspense fallback={<div>Loading...</div>}>
                   <Navbar />
@@ -31,8 +33,9 @@ export default function RootLayout({
                   {children}
                 </div>
               </div>
-            </TokenProvider>
-          </FetchProvider>
+            </CartProvider>
+          </TokenProvider>
+        </FetchProvider>
       </body>
     </html>
   );

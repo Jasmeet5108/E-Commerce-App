@@ -6,6 +6,7 @@ import { FetchProvider } from "@/context/FetchContext";
 import Navbar from "@/components/Navbar";
 import { Suspense } from "react";
 import { CartProvider } from "@/context/CartContext";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,13 +26,11 @@ export default function RootLayout({
         <FetchProvider>
           <TokenProvider>
             <CartProvider>
-              <div>
-                <Suspense fallback={<div>Loading...</div>}>
-                  <Navbar />
-                </Suspense>
-                <div className="max-w-screen-2xl mx-auto">
-                  {children}
-                </div>
+              <Suspense fallback={<Image src={"/container-loader-unscreen.gif"} width={100} height={100} alt='Image' />}>
+                <Navbar />
+              </Suspense>
+              <div className="max-w-screen-2xl mx-auto">
+                {children}
               </div>
             </CartProvider>
           </TokenProvider>

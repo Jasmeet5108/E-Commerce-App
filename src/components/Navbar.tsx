@@ -144,7 +144,7 @@ const Navbar = () => {
                 </nav>
             </header>
 
-            <SideMenu open={menuOpen} />
+            <SideMenu open={menuOpen} toggle={setMenuOpen} />
         </>
     );
 };

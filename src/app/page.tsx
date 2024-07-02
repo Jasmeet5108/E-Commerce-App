@@ -6,11 +6,9 @@ const Page = () => {
   return (
     <>
       <div className="sm:flex sm:justify-between">
-        <div>
           <Suspense fallback={<div>Loading...</div>}>
             <ProductContainer />
           </Suspense>
-        </div>
       </div>
     </>
   );

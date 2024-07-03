@@ -18,6 +18,9 @@ const Page = () => {
         <div className='mt-5'>
           <Link href={`${isLoggedIn ? "/?loggedIn=true" : "/"}`} className='text-blue-500 sm:text-xl'>&larr; &nbsp; Back to Dashboard</Link>
         </div>
+        <div className='mt-5'>
+          <Link href={`${isLoggedIn ? "/cart/?loggedIn=true" : "/cart"}`} className='text-blue-500 sm:text-xl'>&larr; &nbsp; Back to Cart</Link>
+        </div>
       </div>
     </>
   )

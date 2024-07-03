@@ -5,7 +5,6 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
-
 export default function Page() {
 
   const { storeTokenInLocalStorage } = useToken()
@@ -57,10 +56,9 @@ export default function Page() {
     setLoading(false)
   }
 
-
   return (
     <>
-      <div className="flex flex-col-reverse justify-evenly items-center h-[650px]">
+      <div className="flex flex-col justify-start items-center gap-5 h-[650px] sm:mt-10">
         <div className='text-blue-500 sm:text-xl'>
           <Link href="/">&larr; &nbsp; Back to Dashboard</Link>
         </div>
@@ -125,11 +123,16 @@ export default function Page() {
               />
             </div>
             <div className="flex flex-col items-center justify-between">
-              {loading ? <Image src="/loading.jpg" width={70} height={70} alt="loader" /> :
-                <button
-                  className={`bg-blue-500 flex justify-center w-32 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
-                  type="submit"> Sign up
-                </button>
+              {
+                loading ?
+                  <div className='w-20'>
+                    <Image src="/login-loader.gif" width={80} height={50} alt="loader" />
+                  </div>
+                  :
+                  <button
+                    className={`bg-blue-500 flex justify-center w-32 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
+                    type="submit"> Sign up
+                  </button>
               }
 
               <div className="mt-4 text-sky-600 text-sm underline underline-offset-4">
@@ -137,9 +140,11 @@ export default function Page() {
               </div>
 
               {/* Response from server */}
-              {message && <div className='mt-4 border border-red-600 py-1 px-2 bg-red-100 rounded-md'>
-                <p className="text-rose-500">{message}</p>
-              </div>}
+              {
+                message && <div className='mt-4 border border-red-600 py-1 px-2 bg-red-100 rounded-md'>
+                  <p className="text-rose-500">{message}</p>
+                </div>
+              }
 
             </div>
           </form>

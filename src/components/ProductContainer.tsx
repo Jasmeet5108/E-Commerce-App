@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Pagination from './Pagination'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useFetch } from '@/context/FetchContext'
 import { DummyDataProps } from '@/types/DummyData'
@@ -17,18 +17,31 @@ const ProductContainer = () => {
         setFilterModal(prev => !prev)
     }
 
+    const searchParams = useSearchParams()
+    const router = useRouter()
+
     const handleTabChange = (tab: string) => {
         setActiveTab(tab)
         setFilterModal(prev => !prev)
+        router.replace(`/?page=1&perPage=10`)
     }
-
-    const searchParams = useSearchParams()
 
     const { data, fetchData, loading } = useFetch()
 
     useEffect(() => {
         fetchData()
     }, [fetchData])
+
+    const isLoggedIn = searchParams.get("loggedIn")
+    const loginTrue = !!isLoggedIn
+
+    const page = searchParams.get("page") ?? "1"
+    const perPage = searchParams.get("perPage") ?? "10"
+
+    const firstIndex = (Number(page) - 1) * Number(perPage)
+    const lastIndex = firstIndex + Number(perPage)
+
+    const slicedData = filteredData.slice(firstIndex, lastIndex)
 
     useEffect(() => {
         let filtered = data;
@@ -74,18 +87,6 @@ const ProductContainer = () => {
         setFilteredData(filtered as DummyDataProps[]);
         setCategoryName(activeTab)
     }, [activeTab, data]);
-
-
-    const isLoggedIn = searchParams.get("loggedIn")
-    const loginTrue = !!isLoggedIn
-
-    const page = searchParams.get("page") ?? "1"
-    const perPage = searchParams.get("perPage") ?? "10"
-
-    const firstIndex = (Number(page) - 1) * Number(perPage)
-    const lastIndex = firstIndex + Number(perPage)
-
-    const slicedData = filteredData.slice(firstIndex, lastIndex)
 
     return (
         <>

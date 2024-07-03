@@ -5,6 +5,7 @@ import { BASE_URL } from '@/helpers/Base-URL';
 import Image from 'next/image';
 import { useToken } from '@/context/TokenContext';
 import { useCart } from '@/context/CartContext';
+import Link from 'next/link';
 
 interface Props {
     params: {
@@ -20,6 +21,7 @@ const Page: React.FC<Props> = ({ params }) => {
     const { productId } = params
     const [product, setProduct] = useState<DummyDataProps | null>(null)
     const [popUpMessage, setPopUpMessage] = useState<string | null>(null)
+    const [count, setCount] = useState(1)
 
     const getProduct = useCallback(async () => {
         const response = await fetch(`${BASE_URL}${productId}`, { method: "GET" })
@@ -43,7 +45,7 @@ const Page: React.FC<Props> = ({ params }) => {
             }, 2000);
         }
         else {
-            const productWithQuantity: DummyDataWithQuantity = { ...product, quantity: 1 };
+            const productWithQuantity: DummyDataWithQuantity = { ...product, quantity: count };
             addToCart(productWithQuantity);
             setPopUpMessage("Item added to cart")
             setTimeout(() => {
@@ -56,6 +58,10 @@ const Page: React.FC<Props> = ({ params }) => {
         <>
             {product && (
                 <>
+                    <div className='ml-4 sm:mt-5'>
+                        <Link className='text-blue-500 sm:text-xl' href={`${isLoggedIn ? "/?loggedIn=true" : "/"}`}>&larr; &nbsp;Back to Dashboard</Link>
+                    </div>
+
                     <div className='flex flex-col justify-center'>
                         <div className='flex flex-col sm:flex-row items-center justify-center border p-2 bg-[#d5d7df] border-black w-80 pad:w-96 sm:w-[500px] md:w-[700px] lg:w-[850px] lg:h-[500px] xl:w-[1100px] mx-auto mt-10 rounded-xl'>
                             <Image width={100} height={100} src={product.images[0]} className='w-72 sm:w-60 object-contain h-60 md:w-72 md:h-80 xl:w-[1000px]' alt='Image' />
@@ -63,8 +69,16 @@ const Page: React.FC<Props> = ({ params }) => {
                                 <p className='text-xl md:text-2xl text-center font-semibold my-2'>{product.title}</p>
                                 <hr />
                                 <p className='text-sm md:text-base xl:text-lg px-2 my-4'>{product.description}</p>
-                                <div className='flex justify-between md:justify-around items-center'>
-                                    <p className='my-3 lg:text-lg'>Rating: {product.rating}</p>
+                                <div className='flex justify-between md:justify-around items-center p-2'>
+                                    <p className='my-3 lg:text-lg font-semibold'>Rating: {product.rating}/5</p>
+                                    <p className='my-3 lg:text-lg font-semibold'>Price: ${product.price}</p>
+                                </div>
+                                <div className='flex justify-between md:justify-around p-2'>
+                                    <div className='flex justify-center gap-4 border bg-white w-24 border-black py-1 px-3 rounded-lg'>
+                                        <button onClick={() => setCount(count - 1)} className='text-[17px]'>-</button>
+                                        <p className='text-base'>{count}</p>
+                                        <button onClick={() => setCount(count + 1)} className='text-[17px]'>+</button>
+                                    </div>
                                     <button type='button' onClick={() => addItemToCart(product)} className='py-2 px-3 bg-sky-600 text-xs lg:text-sm text-white font-semibold rounded-lg flex items-center'>Add to cart</button>
                                 </div>
                             </div>
@@ -89,7 +103,7 @@ const Page: React.FC<Props> = ({ params }) => {
                                                     <p className='font-semibold'>{review.reviewerName}</p>
                                                 </div>
                                                 <p>{review.comment}</p>
-                                                <p>Rating: {review.rating}</p>
+                                                <p>Rating: {review.rating}/5</p>
                                             </div>
                                         ))
                                     }

@@ -7,7 +7,7 @@ import { useState } from "react"
 
 export default function Page() {
 
-  const { storeTokenInLocalStorage } = useToken()
+  const { user, storeTokenInLocalStorage } = useToken()
 
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
@@ -46,7 +46,10 @@ export default function Page() {
       }
 
       else if (res.success) {
-        storeTokenInLocalStorage(res.token)
+        const user = {
+          username: res.username,
+        }
+        storeTokenInLocalStorage(res.token, user)
         router.replace("/?loggedIn=true")
       }
 

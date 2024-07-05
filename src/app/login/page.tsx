@@ -43,7 +43,10 @@ const Form = () => {
                 }, 2000);
             }
             else if (res.success) {
-                storeTokenInLocalStorage(res.token)
+                const user = {
+                    username: res.username,
+                }
+                storeTokenInLocalStorage(res.token, user)
                 router.replace("/?loggedIn=true")
             }
         } catch (err: any) {

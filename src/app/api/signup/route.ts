@@ -36,10 +36,11 @@ export async function POST(request: NextRequest) {
         const response = NextResponse.json({
             success: true,
             msg: "Registered Successfully",
-            token: token
+            token: token,
+            username: newUser.username,
         })
 
-        response.cookies.set("token", token, { httpOnly: true })
+        // response.cookies.set("token", token, { httpOnly: true })
 
         return response;
 

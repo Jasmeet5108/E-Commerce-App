@@ -115,7 +115,7 @@ const Form = () => {
                                         type="submit"> Login
                                     </button>
                             }
-                            <div className="mt-4 text-sky-600 text-sm underline underline-offset-4">
+                            <div className="mt-4 text-sky-600 text-sm lg:text-base underline underline-offset-4">
                                 <Link href="/register">Create a new account</Link>
                             </div>
                             {/* Response message */}

@@ -5,8 +5,8 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
 import SideMenu from './SideMenu'
 import { useCart } from '@/context/CartContext'
-import DropdownArrowIcon from '@/app/assets/icons/dropdownArrow'
-import CartIcon from '@/app/assets/icons/cartIcon'
+import DropdownArrowIcon from '@/assets/icons/dropdownArrow'
+import CartIcon from '@/assets/icons/cartIcon'
 
 const Navbar = () => {
     const { user, removeTokenFromLocalStorage } = useToken();

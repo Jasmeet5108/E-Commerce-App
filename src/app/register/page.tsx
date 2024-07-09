@@ -7,7 +7,7 @@ import { useState } from "react"
 
 export default function Page() {
 
-  const { user, storeTokenInLocalStorage } = useToken()
+  const { storeTokenInLocalStorage } = useToken()
 
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
@@ -138,7 +138,7 @@ export default function Page() {
                   </button>
               }
 
-              <div className="mt-4 text-sky-600 text-sm underline underline-offset-4">
+              <div className="mt-4 text-sky-600 text-sm lg:text-base underline underline-offset-4">
                 <Link href="/login">Already have an account?</Link>
               </div>
 

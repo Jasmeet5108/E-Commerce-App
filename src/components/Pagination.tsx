@@ -2,8 +2,8 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
 import { DummyDataProps } from '@/types/DummyData';
-import LeftArrowPagination from '@/app/assets/icons/leftArrowPagination';
-import RightArrowPagination from '@/app/assets/icons/rightArrowPagination';
+import LeftArrowPagination from '@/assets/icons/leftArrowPagination';
+import RightArrowPagination from '@/assets/icons/rightArrowPagination';
 
 interface Props {
   data: DummyDataProps[];

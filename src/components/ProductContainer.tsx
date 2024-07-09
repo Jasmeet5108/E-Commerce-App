@@ -6,25 +6,26 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useFetch } from '@/context/FetchContext'
 import { DummyDataProps } from '@/types/DummyData'
-import FilterIcon from '@/app/assets/icons/filterIcon'
+import FilterIcon from '@/assets/icons/filterIcon'
+import { useToken } from '@/context/TokenContext'
 
 const ProductContainer = () => {
     const [filterModal, setFilterModal] = useState(false)
     const [activeTab, setActiveTab] = useState("All Products")
     const [filteredData, setFilteredData] = useState<DummyDataProps[]>([]);
     const [categoryName, setCategoryName] = useState("All Products")
+    const searchParams = useSearchParams()
+    const router = useRouter()
+    const { isLoggedIn } = useToken()
 
     const filterModalToggle = () => {
         setFilterModal(prev => !prev)
     }
 
-    const searchParams = useSearchParams()
-    const router = useRouter()
-
     const handleTabChange = (tab: string) => {
         setActiveTab(tab)
         setFilterModal(prev => !prev)
-        router.replace(`/?page=1&perPage=10`)
+        router.replace(`${isLoggedIn ? "/?page=1&perPage=10&loggedIn=true" : "/?page=1&perPage=10"}`)
     }
 
     const { data, fetchData, loading } = useFetch()
@@ -33,8 +34,8 @@ const ProductContainer = () => {
         fetchData()
     }, [fetchData])
 
-    const isLoggedIn = searchParams.get("loggedIn")
-    const loginTrue = !!isLoggedIn
+    const LoggedIn = searchParams.get("loggedIn")
+    const loginTrue = !!LoggedIn
 
     const page = searchParams.get("page") ?? "1"
     const perPage = searchParams.get("perPage") ?? "10"

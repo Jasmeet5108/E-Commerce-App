@@ -75,11 +75,11 @@ const Page: React.FC<Props> = ({ params }) => {
                                 </div>
                                 <div className='flex justify-between md:justify-around p-2'>
                                     <div className='flex justify-center gap-4 border bg-white w-24 border-black py-1 px-3 rounded-lg'>
-                                        <button onClick={() => setCount(count - 1)} className='text-[17px]'>-</button>
+                                        <button disabled={count === 1} onClick={() => setCount(count - 1)} className={`text-[17px] ${count === 1 ? "cursor-not-allowed" : "cursor-pointer"} px-1`}>-</button>
                                         <p className='text-base'>{count}</p>
-                                        <button onClick={() => setCount(count + 1)} className='text-[17px]'>+</button>
+                                        <button onClick={() => setCount(count + 1)} className='text-[17px] px-1'>+</button>
                                     </div>
-                                    <button type='button' onClick={() => addItemToCart(product)} className='py-2 px-3 bg-sky-600 text-xs lg:text-sm text-white font-semibold rounded-lg flex items-center'>Add to cart</button>
+                                    <button type='button' onClick={() => addItemToCart(product)} className='py-2 px-3 bg-sky-600 hover:bg-sky-500 text-xs lg:text-sm text-white font-semibold rounded-lg flex items-center'>Add to cart</button>
                                 </div>
                             </div>
                         </div>
